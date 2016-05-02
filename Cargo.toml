@@ -1,0 +1,33 @@
+[package]
+
+name = "labyrinth"
+version = "0.0.1"
+authors = [ "Rafał Michalski <royal@yeondir.com>" ]
+
+publish = false
+
+description = "The labyrinth generator"
+homepage = "https://github.com/royaltm/rust-labyrinth"
+repository = "https://github.com/royaltm/rust-labyrinth.git"
+keywords = ["labyrinth"]
+
+readme = "README.md"
+license-file = "LICENSE"
+
+[[bin]]
+name = "labyrinth"
+doc = false
+test = false
+
+[lib]
+
+doc = true
+test = true
+
+[dependencies]
+
+num_cpus = "0.2"
+threadpool = "1.0"
+rand = "0.3"
+# rustc-serialize = "0.3"
+# serde_json = "0.7"
