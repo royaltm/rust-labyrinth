@@ -9,7 +9,7 @@
 //! 
 //! use labyrinth::{Wall, Direction};
 //! fn main() {
-//!     let mut wall = Wall::new(5, 5);
+//!     let mut wall = Wall::new(20, 20);
 //!     wall.carve();
 //!     wall.print();
 //!     wall.open(0, 10, Direction::Up);
