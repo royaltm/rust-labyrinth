@@ -1,7 +1,7 @@
 Labyrinth
 =========
 
-__Just learning rust.__
+[![Build Status](https://travis-ci.org/royaltm/rust-labyrinth.svg?branch=master)](https://travis-ci.org/royaltm/rust-labyrinth)
 
 This library creates a true labyrinth using low-memory, cpu-intensive hunt'n'seek algorythm. 
 
