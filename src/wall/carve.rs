@@ -1,6 +1,6 @@
 use rand::{thread_rng, Rng};
 use super::Wall;
-use super::super::room::Room;
+use super::super::room::*;
 use super::super::Direction::*;
 use super::super::direction::{Move as Mov};
 
@@ -15,7 +15,7 @@ impl Wall {
     ///
     /// The labyrinth must be in an initial state otherwise this method will never return.
     pub fn carve(&mut self) {
-        let mut rooms = Room::new(self.rows, self.cols);
+        let mut rooms = <Room as RoomFactory>::new(self.rows, self.cols);
         let mut rnd = {
             let mut rng = thread_rng();
             move |x| rng.gen_range(0, x)

@@ -1,17 +1,26 @@
 use super::vector2d::Vec2D;
 use super::Int;
 
-pub struct Room {
-    rooms: Vec2D<bool>
+pub type Room = Vec2D<bool>;
+
+pub trait RoomFactory {
+    fn new(rows: Int, cols: Int) -> Room;
 }
 
-impl Room {
-    pub fn new(rows: Int, cols: Int) -> Room {
-        Room { rooms: Vec2D::new(cols as usize, rows as usize, false) }
+pub trait RoomMethods {
+    fn mark(&mut self, x: Int, y: Int);
+    fn was_marked(&self, x: Int, y: Int) -> bool;
+}
+
+impl RoomFactory for Room {
+    fn new(rows: Int, cols: Int) -> Room {
+        Vec2D::new(cols as usize, rows as usize, false)
     }
-    pub fn mark(&mut self, x: Int, y: Int) -> &mut Room {
-        self.rooms.set(x as usize, y as usize, true);
-        self
+}
+
+impl RoomMethods for Room {
+    fn mark(&mut self, x: Int, y: Int) {
+        self.set(x as usize, y as usize, true);
     }
-    pub fn was_marked(&self, x: Int, y: Int) -> bool { *self.rooms.get(x as usize, y as usize) }
+    fn was_marked(&self, x: Int, y: Int) -> bool { *self.get(x as usize, y as usize) }
 }
