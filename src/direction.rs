@@ -30,13 +30,13 @@ impl Move {
             ( 1,  0) => { Right }
             ( 0, -1) => { Up }
             _ => {
-                panic!("invalid Move value: {:?}", self);
+                panic!("Invalid Move value: {:?}", self);
             }
         }
     }
-    pub fn back(&self)    -> Move { Move{dx: -self.dx, dy: -self.dy} }
-    pub fn turn_rt(&self) -> Move { Move{dx: -self.dy, dy:  self.dx} }
-    pub fn turn_lt(&self) -> Move { Move{dx:  self.dy, dy: -self.dx} }
+    pub fn back(&mut self) { self.dx = -self.dx; self.dy = -self.dy; }
+    pub fn turn_rt(&mut self) { match (self.dx, self.dy) { (dx, dy) => { self.dx = -dy; self.dy =  dx; } } }
+    pub fn turn_lt(&mut self) { match (self.dx, self.dy) { (dx, dy) => { self.dx =  dy; self.dy = -dx; } } }
     pub fn move_xy(&self, x: &mut Int, y: &mut Int) {
         *x += self.dx;
         *y += self.dy;

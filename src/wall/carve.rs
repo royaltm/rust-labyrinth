@@ -28,8 +28,8 @@ impl Wall {
         /* hunt */
         for _ in 1..(self.rows * self.cols) {
             match rnd(3) {
-                1 => { mov = mov.turn_rt(); }
-                2 => { mov = mov.turn_lt(); }
+                1 => { mov.turn_rt(); }
+                2 => { mov.turn_lt(); }
                 _ => { }
             }
             {
@@ -40,7 +40,7 @@ impl Wall {
 
                 'check: while outbound_or_marked(x, y, mov) {
                     for _ in 0..3 {
-                        mov = mov.turn_rt();
+                        mov.turn_rt();
                         if !outbound_or_marked(x, y, mov) { break 'check; }
                     }
                     /* seek */
