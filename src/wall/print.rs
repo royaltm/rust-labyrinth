@@ -18,7 +18,6 @@ impl Wall {
     /// Draw a labyrinth using UNICODE BOX characters to a `writer`.
     pub fn draw(&self, writer: &mut FnMut(&str)) {
         for y in 0..self.rows {
-            writer("\n");
             for x in 0..self.cols {
                 if x == 0 || self.is_open(x - 1, y, Up) {
                     if y == 0 || self.is_open(x, y - 1, Left) {
@@ -64,9 +63,9 @@ impl Wall {
                     writer(if self.is_open(x, y, Left) { "┛" } else { "┫" });
                 }
             }
+            writer("\n");
         }
         let y = self.rows;
-        writer("\n");
         for x in 0..self.cols {
             if x == 0 || self.is_open(x - 1, y, Up) {
                 if self.is_open(x, y - 1, Left) {
@@ -100,80 +99,80 @@ mod tests {
     #[test]
     fn should_draw_a_labyrinth() {
         let mut labyrinth = Wall::new(2, 2);
-        assert_eq!("
-┏━┳━┓
+        assert_eq!(
+"┏━┳━┓
 ┣━╋━┫
 ┗━┻━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 0, Right);
-        assert_eq!("
-┏━━━┓
+        assert_eq!(
+"┏━━━┓
 ┣━┳━┫
 ┗━┻━┛
 ",      &labyrinth.to_string());
         labyrinth.open(1, 0, Down);
-        assert_eq!("
-┏━━━┓
+        assert_eq!(
+"┏━━━┓
 ┣━┓ ┃
 ┗━┻━┛
 ",      &labyrinth.to_string());
         labyrinth.open(1, 1, Left);
-        assert_eq!("
-┏━━━┓
+        assert_eq!(
+"┏━━━┓
 ┣━╸ ┃
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 1, Up);
-        assert_eq!("
-┏━━━┓
+        assert_eq!(
+"┏━━━┓
 ┃   ┃
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 0, Left);
-        assert_eq!("
-╺━━━┓
+        assert_eq!(
+"╺━━━┓
 ╻   ┃
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 0, Up);
-        assert_eq!("
-  ╺━┓
+        assert_eq!(
+"  ╺━┓
 ╻   ┃
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(1, 0, Up);
-        assert_eq!("
-    ╻
+        assert_eq!(
+"    ╻
 ╻   ┃
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(1, 0, Right);
-        assert_eq!("
-     
+        assert_eq!(
+"     
 ╻   ╻
 ┗━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 1, Left);
-        assert_eq!("
-     
+        assert_eq!(
+"     
     ╻
 ╺━━━┛
 ",      &labyrinth.to_string());
         labyrinth.open(0, 1, Down);
-        assert_eq!("
-     
+        assert_eq!(
+"     
     ╻
   ╺━┛
 ",      &labyrinth.to_string());
         labyrinth.open(1, 1, Down);
-        assert_eq!("
-     
+        assert_eq!(
+"     
     ╻
     ╹
 ",      &labyrinth.to_string());
         labyrinth.open(1, 1, Right);
-        assert_eq!("
-     
+        assert_eq!(
+"     
      
      
 ",      &labyrinth.to_string());
