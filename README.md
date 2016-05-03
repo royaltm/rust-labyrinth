@@ -12,11 +12,11 @@ Program
 
 ```
 cargo build --release
-target/release/labyrinth [cols=10 [rows=cols [times=1 [threads=num_cpus]]]]
+target/release/labyrinth [cols=10 [rows=cols [times=1 [concurrency=num_cpus]]]]
 
 # or
 
-cargo run --release -- [cols=10 [rows=cols [times=1 [threads=num_cpus]]]]
+cargo run --release -- [cols=10 [rows=cols [times=1 [concurrency=num_cpus]]]]
 ```
 
 ### Create
