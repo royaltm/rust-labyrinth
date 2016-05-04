@@ -15,13 +15,15 @@ fn main() {
     let mut args = env::args();
     args.next();
     let cols = if let Some(arg) = args.next() { arg.parse::<Int>() }   else { Ok(10) };
-    let rows = if let Some(arg) = args.next() { arg.parse::<Int>() }   else { Ok(10) };
+    let rows = if let Some(arg) = args.next() { arg.parse::<Int>() }   else { cols.clone() };
     let deep = if let Some(arg) = args.next() { arg.parse::<Uint>() }  else { Ok(1u32) };
-    let concurrency = if let Some(arg) = args.next() { arg.parse::<usize>() } else { Ok(num_cpus::get()) };
+    let cpus = if let Some(arg) = args.next() { arg.parse::<usize>() } else { Ok(num_cpus::get()) };
 
-    match (rows, cols, deep, concurrency) {
-        (Ok(rows), Ok(cols), Ok(deep), Ok(concurrency)) => {
+    match (rows, cols, deep, cpus) {
+        (Ok(rows), Ok(cols), Ok(deep), Ok(cpus)) => {
             if rows > 0 && cols > 0 {
+
+                let concurrency = if cpus > deep as usize { deep as usize } else { cpus };
 
                 if concurrency <= 1 {
                     /* Linear implementation */
