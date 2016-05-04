@@ -87,5 +87,9 @@ mod tests {
         assert_eq!(0, count_open(&labyrinth));
         labyrinth.carve();
         assert_eq!(137*111*2-2, count_open(&labyrinth));
+        labyrinth.close_all();
+        assert_eq!(0, count_open(&labyrinth));
+        labyrinth.carve();
+        assert_eq!(137*111*2-2, count_open(&labyrinth));
     }
 }

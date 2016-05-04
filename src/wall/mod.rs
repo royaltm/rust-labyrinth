@@ -57,7 +57,7 @@ impl Wall {
     /// labyrinth.close_all().carve();
     /// ```
     pub fn close_all(&mut self) -> &mut Wall {
-        self.exits.fill(true);
+        self.exits.fill(false);
         self
     }
     /// Check existence of the specified exit.
