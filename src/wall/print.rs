@@ -16,7 +16,7 @@ impl Wall {
         out
     }
     /// Draw a labyrinth using UNICODE BOX characters to a `writer`.
-    pub fn draw(&self, writer: &mut FnMut(&str)) {
+    pub fn draw(&self, writer: &mut dyn FnMut(&str)) {
         for y in 0..self.rows {
             for x in 0..self.cols {
                 if x == 0 || self.is_open(x - 1, y, Up) {
