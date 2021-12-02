@@ -3,7 +3,7 @@ Labyrinth
 
 [![Build Status](https://travis-ci.org/royaltm/rust-labyrinth.svg?branch=master)](https://travis-ci.org/royaltm/rust-labyrinth)
 
-This library creates a true labyrinth using low-memory, cpu-intensive hunt'n'seek algorythm. 
+This library creates a true labyrinth using low-memory, cpu-intensive hunt'n'seek algorithm. 
 
 Program
 -------
