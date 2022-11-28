@@ -18,7 +18,7 @@ impl Wall {
         let mut rooms = <Room as RoomFactory>::new(self.rows, self.cols);
         let mut rnd = {
             let mut rng = thread_rng();
-            move |x| rng.gen_range(0, x)
+            move |x| rng.gen_range(0..x)
         };
         let mut mov = Mov::from_dir(Up);
         let (mut x, mut y) = self.random_start(&mut rnd);
